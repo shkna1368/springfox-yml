@@ -1,0 +1,30 @@
+springwolf:
+  plugin:
+    kafka:
+      publishing:
+        enabled: true
+        producer:
+          bootstrap-servers: ${spring.kafka.bootstrap-servers}
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+          .properties:
+            spring:
+              json:
+                add:
+                  type:
+                    headers: false
+
+
+  docket:
+    info:
+      title: ${spring.application.name}
+      version: 1.0.0
+    base-package: com.tara.calculatemaster
+    servers:
+      kafka:
+        protocol: kafka
+        host: ${spring.kafka.bootstrap-servers}
+     # kafka-server:
+     #   protocol: kafka
+     #   host: ${spring.kafka.bootstrap-servers}
+  enabled: true
